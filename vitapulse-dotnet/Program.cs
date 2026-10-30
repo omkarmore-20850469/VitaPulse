@@ -49,12 +49,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddAuthorization();
-builder.Services.AddScoped<TokenService>();
 builder.Services.AddCors(options => options.AddPolicy("Angular", policy =>
-    policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
-          .AllowAnyHeader()
-          .AllowAnyMethod()));
+    policy.WithOrigins(
+        "http://localhost:4200",
+        "https://localhost:4200",
+        "https://vita-pulse-beta.vercel.app"
+    )
+    .AllowAnyHeader()
+    .AllowAnyMethod()));
 
 var app = builder.Build();
 
